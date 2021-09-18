@@ -12,7 +12,7 @@ public class SimHash {
 
     public BigInteger intSimHash;   //用于记录签名值
 
-    private String strSimHash;  //
+    public String strSimHash;
 
     private int hashbits = 64;  //hash签名的位数
 

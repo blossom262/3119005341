@@ -1,7 +1,6 @@
 package Util;
 
 import java.io.*;
-import java.text.DecimalFormat;
 
 import DuplicateCheck.SimHash;
 import DuplicateCheck.Similarity;
@@ -10,7 +9,6 @@ public class Compare {
     public static void main(String[] args) throws Exception { //主函数，用于进行文件的读写
         if(args.length!=3){
             System.out.println("请输入三个参数");
-            return;
         }
         String path1 = args[0]; // 原始文本路径
         String path2 = args[1]; // 抄袭文本路径
@@ -27,15 +25,14 @@ public class Compare {
         output.write("查重率：");
         output.write(rate);
         output.close();
-
     }
 
     public static double ans(String filepath1, String filepath2) throws Exception {
-        // 指定文件
+        // 创建变量用于存放文本
         String oldText = new String();
         String newText = new String();
 
-        // 指定文件路径
+        // 文件路径
         String oldPath = filepath1;
         String newPath = filepath2;
 
@@ -43,11 +40,11 @@ public class Compare {
         BufferedReader oldBuff = new BufferedReader(new InputStreamReader(new FileInputStream(oldPath), "UTF8"));
         BufferedReader newBuff = new BufferedReader(new InputStreamReader(new FileInputStream(newPath), "UTF8"));
         String str;
-        // 读入原来的文件
+        // 读入原始文本
         while ((str = oldBuff.readLine()) != null) {
             oldText += str;
         }
-        // 读入新的文件
+        // 读入抄袭文本
         while ((str = newBuff.readLine()) != null) {
             newText += str;
         }

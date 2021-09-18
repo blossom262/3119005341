@@ -16,7 +16,7 @@ public class Similarity {
         return difference;
     }
 
-    static public double getSimliar(int x) {
+    public static double getSimliar(int x) {//计算查重率
         double number1 = Math.sqrt(2 * PI * 0.16);
         double number2 = Math.pow(0.01 * x - 0.01, 2);
         double number3 = 2 * 0.0459 * 0.0459 * (-1.0);
