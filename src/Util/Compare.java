@@ -7,24 +7,27 @@ import DuplicateCheck.SimHash;
 import DuplicateCheck.Similarity;
 
 public class Compare {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception { //主函数，用于进行文件的读写
         if(args.length!=3){
-            System.out.println("输入更多");
+            System.out.println("请输入三个参数");
             return;
         }
-        String path1 = args[0];// 原文本绝对路径  E:\360MoveData\Users\L\Desktop\tests\orig.txt
-        String path2 = args[1];// 抄袭文本路径    E:\360MoveData\Users\L\Desktop\tests\orig_0.8_add.txt、orig_0.8_del.txt、orig_0.8_dis_1.txt
-        String path3 = args[2];// 结果文件路径    E:\360MoveData\Users\L\Desktop\tests\res.txt
-        System.out.println(path1.substring(37) + "文本与" + path2.substring(37) + "文本的相似度为：");
+        String path1 = args[0]; // 原始文本路径
+        String path2 = args[1]; // 抄袭文本路径
+        String path3 = args[2]; // 查重结果文件路径
+        String name1 = args[0].substring(args[0].lastIndexOf("\\")+1);//原始文本文件名
+        String name2 = args[1].substring(args[1].lastIndexOf("\\")+1);//抄袭文本文件名
+        System.out.println("原始文本与抄袭文本的相似度为：");
         double ans = Compare.ans(path1, path2);
-        String data = "" + ans;
+        String rate = Double.toString(ans);
         File outputFile = new File(path3);
-        FileWriter output = new FileWriter(outputFile);
-        char[] chars = data.toCharArray();
-        output.write(chars);
+        FileWriter output = new FileWriter(outputFile);  //用于写入文件
+        output.write("原始文本："+name1+ "\n");
+        output.write("抄袭文本："+name2+ "\n");
+        output.write("查重率：");
+        output.write(rate);
         output.close();
-        System.out.println("-----------------------------------------");
-        //Thread.sleep(20000);
+
     }
 
     public static double ans(String filepath1, String filepath2) throws Exception {
@@ -53,13 +56,13 @@ public class Compare {
         newBuff.close();
 
         if (oldText.length() == 0 || newText.length() == 0) {
-            throw new EmptyException("文本为空");
+            throw new EmptyException("文本无内容");
         }
 
         double ans;
         SimHash hash1 = new SimHash(oldText, 64);
         SimHash hash2 = new SimHash(newText, 64);
-        int d = hash1.hammingDistance(hash2);// 计算汉明距离
+        int d = Similarity.hammingDistance(hash1,hash2);// 计算汉明距离
         ans = Similarity.getSimliar(d);
         System.out.println(ans);
         return ans;

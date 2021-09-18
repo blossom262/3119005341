@@ -27,8 +27,6 @@ public class SimHash {
         this.intSimHash = this.simHash();
     }
 
-    HashMap<String, Integer> wordMap = new HashMap<String, Integer>();
-
     public BigInteger simHash() throws IOException {
         int[] v = new int[this.hashbits];  // 定义向量v用于计算签名值
         StringReader sr = new StringReader(text);  // 创建文本输入流，读入文本
@@ -60,7 +58,7 @@ public class SimHash {
         return fingerprint;
     }
 
-    public BigInteger hash(String source) {  //hash算法
+    public BigInteger hash(String source) {  //hash函数将每个词映射成一串二进制数
         if (source == null || source.length() == 0) {
             return new BigInteger("0");
         } else {
@@ -80,20 +78,5 @@ public class SimHash {
         }
     }
 
-    public int hammingDistance(SimHash other) {  //计算汉明距离
-
-        BigInteger x = this.intSimHash.xor(other.intSimHash);
-        int tot = 0;
-
-        // 统计x中二进制位数为1的个数
-        // 一个二进制数减去1，从最后那个1（包括那个1）后面的数字全都反了，然后，n&(n-1)就相当于把后面的数字清0，
-        // 计算n能够完成多少次以上操作
-
-        while (x.signum() != 0) {
-            tot += 1;
-            x = x.and(x.subtract(new BigInteger("1")));
-        }
-        return tot;
-    }
 
 }
