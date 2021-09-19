@@ -6,7 +6,7 @@ import DuplicateCheck.SimHash;
 import DuplicateCheck.Similarity;
 
 public class Compare {
-    public static void main(String[] args) throws Exception { //主函数，用于进行文件的读写
+    public static boolean main(String[] args) throws Exception { //主函数，用于进行文件的读写
         if(args.length!=3){
             System.out.println("请输入三个参数");
         }
@@ -25,6 +25,7 @@ public class Compare {
         output.write("查重率：");
         output.write(rate);
         output.close();
+        return false;
     }
 
     public static double ans(String filepath1, String filepath2) throws Exception {

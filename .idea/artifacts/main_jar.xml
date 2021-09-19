@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="main.jar">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="PersonalProject.jar">
+      <element id="module-output" name="PersonalProject" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/Java/jdk1.8.0_281/jre/lib/ext/IKAnalyzer2012_u6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../Program Files/Java/jdk1.8.0_281/jre/lib/ext/junit-4.10.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
